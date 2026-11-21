@@ -1,7 +1,12 @@
 {
- "updated": "2026-11-22 01:39",
+ "updated": "2026-11-22 02:25",
  "datasets": {
   "taifex_inst_cp": {
+   "n": 1,
+   "first": "2026-11-20",
+   "last": "2026-11-20"
+  },
+  "taifex_inst_fo": {
    "n": 1,
    "first": "2026-11-20",
    "last": "2026-11-20"
@@ -14,6 +19,26 @@
   "taifex_pcr": {
    "n": 1,
    "first": "2026-11-20",
+   "last": "2026-11-20"
+  },
+  "taifex_txf": {
+   "n": 12,
+   "first": "2025-11",
+   "last": "2026-10"
+  },
+  "tpex_margin": {
+   "n": 230,
+   "first": "2025-12-08",
+   "last": "2026-11-20"
+  },
+  "tpex_qfii": {
+   "n": 230,
+   "first": "2025-12-08",
+   "last": "2026-11-20"
+  },
+  "tpex_sbl": {
+   "n": 230,
+   "first": "2025-12-08",
    "last": "2026-11-20"
   },
   "twse_margin": {
@@ -34,120 +59,6 @@
  },
  "lastRun": [
   {
-   "ds": "twse_qfii",
-   "date": "2026-01-12",
-   "ok": true,
-   "info": "rows=1313"
-  },
-  {
-   "ds": "twse_margin",
-   "date": "2026-01-09",
-   "ok": true,
-   "info": "rows=1249"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-01-09",
-   "ok": true,
-   "info": "rows=1251"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-01-09",
-   "ok": true,
-   "info": "rows=1313"
-  },
-  {
-   "ds": "twse_margin",
-   "date": "2026-01-08",
-   "ok": true,
-   "info": "rows=1249"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-01-08",
-   "ok": true,
-   "info": "rows=1252"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-01-08",
-   "ok": true,
-   "info": "rows=1313"
-  },
-  {
-   "ds": "twse_margin",
-   "date": "2026-01-07",
-   "ok": true,
-   "info": "rows=1249"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-01-07",
-   "ok": true,
-   "info": "rows=1252"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-01-07",
-   "ok": true,
-   "info": "rows=1313"
-  },
-  {
-   "ds": "twse_margin",
-   "date": "2026-01-06",
-   "ok": true,
-   "info": "rows=1249"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-01-06",
-   "ok": true,
-   "info": "rows=1252"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-01-06",
-   "ok": true,
-   "info": "rows=1313"
-  },
-  {
-   "ds": "twse_margin",
-   "date": "2026-01-05",
-   "ok": true,
-   "info": "rows=1248"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-01-05",
-   "ok": true,
-   "info": "rows=1251"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-01-05",
-   "ok": true,
-   "info": "rows=1311"
-  },
-  {
-   "ds": "twse_margin",
-   "date": "2026-01-02",
-   "ok": true,
-   "info": "rows=1248"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-01-02",
-   "ok": true,
-   "info": "rows=1251"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-01-02",
-   "ok": true,
-   "info": "rows=1311"
-  },
-  {
    "ds": "twse_margin",
    "date": "2026-01-01",
    "ok": false,
@@ -166,76 +77,94 @@
    "info": "rows=0"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
+   "date": "2026-01-01",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "tpex_sbl",
+   "date": "2026-01-01",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "tpex_qfii",
+   "date": "2026-01-01",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "tpex_margin",
    "date": "2025-12-31",
    "ok": true,
-   "info": "rows=1248"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-31",
    "ok": true,
-   "info": "rows=1251"
+   "info": "rows=893"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-31",
    "ok": true,
-   "info": "rows=1311"
+   "info": "rows=875"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-30",
    "ok": true,
-   "info": "rows=1248"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-30",
    "ok": true,
-   "info": "rows=1249"
+   "info": "rows=887"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-30",
    "ok": true,
-   "info": "rows=1311"
+   "info": "rows=875"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-29",
    "ok": true,
-   "info": "rows=1248"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-29",
    "ok": true,
-   "info": "rows=1249"
+   "info": "rows=887"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-29",
    "ok": true,
-   "info": "rows=1311"
+   "info": "rows=874"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-26",
    "ok": true,
-   "info": "rows=1246"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-26",
    "ok": true,
-   "info": "rows=1247"
+   "info": "rows=887"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-26",
    "ok": true,
-   "info": "rows=1309"
+   "info": "rows=874"
   },
   {
    "ds": "twse_margin",
@@ -256,244 +185,340 @@
    "info": "rows=0"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
+   "date": "2025-12-25",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "tpex_sbl",
+   "date": "2025-12-25",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "tpex_qfii",
+   "date": "2025-12-25",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "tpex_margin",
    "date": "2025-12-24",
    "ok": true,
-   "info": "rows=1246"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-24",
    "ok": true,
-   "info": "rows=1247"
+   "info": "rows=887"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-24",
    "ok": true,
-   "info": "rows=1309"
+   "info": "rows=874"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-23",
    "ok": true,
-   "info": "rows=1245"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-23",
    "ok": true,
-   "info": "rows=1246"
+   "info": "rows=886"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-23",
    "ok": true,
-   "info": "rows=1308"
+   "info": "rows=874"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-22",
    "ok": true,
-   "info": "rows=1244"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-22",
    "ok": true,
-   "info": "rows=1245"
+   "info": "rows=886"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-22",
    "ok": true,
-   "info": "rows=1308"
+   "info": "rows=872"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-19",
    "ok": true,
-   "info": "rows=1244"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-19",
    "ok": true,
-   "info": "rows=1245"
+   "info": "rows=886"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-19",
    "ok": true,
-   "info": "rows=1307"
+   "info": "rows=869"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-18",
    "ok": true,
-   "info": "rows=1243"
+   "info": "rows=877"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-18",
    "ok": true,
-   "info": "rows=1243"
+   "info": "rows=886"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-18",
    "ok": true,
-   "info": "rows=1305"
+   "info": "rows=869"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-17",
    "ok": true,
-   "info": "rows=1242"
+   "info": "rows=876"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-17",
    "ok": true,
-   "info": "rows=1243"
+   "info": "rows=885"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-17",
    "ok": true,
-   "info": "rows=1305"
+   "info": "rows=869"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-16",
    "ok": true,
-   "info": "rows=1241"
+   "info": "rows=876"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-16",
    "ok": true,
-   "info": "rows=1242"
+   "info": "rows=885"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-16",
    "ok": true,
-   "info": "rows=1304"
+   "info": "rows=868"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-15",
    "ok": true,
-   "info": "rows=1241"
+   "info": "rows=876"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-15",
    "ok": true,
-   "info": "rows=1242"
+   "info": "rows=885"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-15",
    "ok": true,
-   "info": "rows=1304"
+   "info": "rows=868"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-12",
    "ok": true,
-   "info": "rows=1240"
+   "info": "rows=876"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-12",
    "ok": true,
-   "info": "rows=1241"
+   "info": "rows=885"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-12",
    "ok": true,
-   "info": "rows=1304"
+   "info": "rows=868"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-11",
    "ok": true,
-   "info": "rows=1240"
+   "info": "rows=876"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-11",
    "ok": true,
-   "info": "rows=1241"
+   "info": "rows=885"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-11",
    "ok": true,
-   "info": "rows=1304"
+   "info": "rows=868"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-10",
    "ok": true,
-   "info": "rows=1239"
+   "info": "rows=876"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-10",
    "ok": true,
-   "info": "rows=1240"
+   "info": "rows=885"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-10",
    "ok": true,
-   "info": "rows=1304"
+   "info": "rows=867"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-09",
    "ok": true,
-   "info": "rows=1239"
+   "info": "rows=876"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-09",
    "ok": true,
-   "info": "rows=1240"
+   "info": "rows=885"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-09",
    "ok": true,
-   "info": "rows=1304"
+   "info": "rows=864"
   },
   {
-   "ds": "twse_margin",
+   "ds": "tpex_margin",
    "date": "2025-12-08",
    "ok": true,
-   "info": "rows=1239"
+   "info": "rows=874"
   },
   {
-   "ds": "twse_sbl",
+   "ds": "tpex_sbl",
    "date": "2025-12-08",
    "ok": true,
-   "info": "rows=1240"
+   "info": "rows=885"
   },
   {
-   "ds": "twse_qfii",
+   "ds": "tpex_qfii",
    "date": "2025-12-08",
    "ok": true,
-   "info": "rows=1304"
+   "info": "rows=864"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-11",
+   "ok": false,
+   "info": "not cp950"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-10",
+   "ok": true,
+   "info": "rows=57"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-09",
+   "ok": true,
+   "info": "rows=60"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-08",
+   "ok": true,
+   "info": "rows=63"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-07",
+   "ok": true,
+   "info": "rows=66"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-06",
+   "ok": true,
+   "info": "rows=63"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-05",
+   "ok": true,
+   "info": "rows=60"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-04",
+   "ok": true,
+   "info": "rows=60"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-03",
+   "ok": true,
+   "info": "rows=66"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-02",
+   "ok": true,
+   "info": "rows=36"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2026-01",
+   "ok": true,
+   "info": "rows=63"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2025-12",
+   "ok": true,
+   "info": "rows=66"
+  },
+  {
+   "ds": "taifex_txf",
+   "date": "2025-11",
+   "ok": true,
+   "info": "rows=60"
   },
   {
    "ds": "taifex_inst_fo",
-   "date": null,
-   "ok": false,
-   "info": "HTTP 200 1511B"
+   "date": "2026-11-20",
+   "ok": true,
+   "info": "HTTP 200 3506B"
   },
   {
    "ds": "taifex_inst_fut",
