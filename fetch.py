@@ -39,6 +39,7 @@ DATED = {
 # 期交所歷史資料（一次下載一個月，存成 raw/<資料集>/<YYYY-MM>.csv.gz；當月每次重抓）
 MONTHLY = {
     'taifex_txf': ('https://www.taifex.com.tw/cht/3/futContractsDateDown', {'queryStartDate': '{m0}', 'queryEndDate': '{m1}', 'commodityId': 'TXF'}),
+    'taifex_pcr_m': ('https://www.taifex.com.tw/cht/3/pcRatioDown', {'queryStartDate': '{m0}', 'queryEndDate': '{m1}'}),
 }
 # 只有最新一天的資料集（日期從內容判斷）
 LATEST = {
@@ -51,10 +52,7 @@ LATEST = {
 PROBE = [
     ('twse_margin', DATED['twse_margin'], None),
     ('tpex_margin', DATED['tpex_margin'], None),
-    ('tpex_sbl', DATED['tpex_sbl'], None),
-    ('tpex_qfii', DATED['tpex_qfii'], None),
-    ('taifex_pcr_csv', 'https://www.taifex.com.tw/cht/3/pcRatioDown', {'queryStartDate': '{ymds_m30}', 'queryEndDate': '{ymds}'}),
-    ('taifex_txf_year', 'https://www.taifex.com.tw/cht/3/futContractsDateDown', {'queryStartDate': '{ymds_m365}', 'queryEndDate': '{ymds}', 'commodityId': 'TXF'}),
+    ('taifex_txf_today', 'https://www.taifex.com.tw/cht/3/futContractsDateDown', {'queryStartDate': '{ymds_m30}', 'queryEndDate': '{today}', 'commodityId': 'TXF'}),
 ]
 
 _last = {}
@@ -106,6 +104,7 @@ def fetch(url, form=None, timeout=40, tries=3):
 def fmt(s, day):
     roc = f'{day.year - 1911}/{day:%m/%d}'
     m30, m365 = day - dt.timedelta(days=30), day - dt.timedelta(days=365)
+    s = s.replace('{today}', f'{dt.datetime.now(TW):%Y/%m/%d}')
     return (s.replace('{ymd}', f'{day:%Y%m%d}').replace('{ymds}', f'{day:%Y/%m/%d}').replace('{roc}', roc)
             .replace('{ymds_m30}', f'{m30:%Y/%m/%d}').replace('{ymds_m365}', f'{m365:%Y/%m/%d}'))
 
@@ -201,11 +200,17 @@ def csv_ok(body):
 
 
 def csv_last_date(p):
-    """已存的月檔最後一筆資料日期（date），讀不到就回傳 None"""
+    """已存的月檔裡最新的資料日期（date）；有的檔案由新到舊排，所以取最大值。讀不到就回傳 None"""
     try:
         with gzip.open(p, 'rb') as f:
-            lines = [x for x in f.read().decode('cp950').splitlines() if x.strip()]
-        return dt.date(*map(int, lines[-1].split(',')[0].strip().split('/')))
+            lines = [x for x in f.read().decode('cp950').splitlines() if x.strip()][1:]
+        ds = []
+        for x in lines:
+            try:
+                ds.append(dt.date(*map(int, x.split(',')[0].strip().split('/'))))
+            except ValueError:
+                pass
+        return max(ds) if ds else None
     except Exception:
         return None
 
@@ -221,10 +226,17 @@ def run_monthly(n, log):
             if blocked(url, ds):
                 log.append({'ds': ds, 'date': key, 'ok': False, 'info': 'skipped: failing'})
                 continue
-            f2 = {k: v.replace('{m0}', f'{d0:%Y/%m/%d}').replace('{m1}', f'{d1:%Y/%m/%d}') for k, v in form.items()}
-            st, body, ct = fetch(url, f2, tries=2)
-            mark(url, ds, st == 200)
-            ok, info = csv_ok(body) if st == 200 else (False, f'HTTP {st}')
+            # 本月的結束日期可能還沒有資料（假日、收盤前），期交所會回錯誤頁：往前退幾天再試
+            for back in (range(0, 5) if key == f'{today:%Y-%m}' else [0]):
+                e = d1 - dt.timedelta(days=back)
+                if e < d0:
+                    break
+                f2 = {k: v.replace('{m0}', f'{d0:%Y/%m/%d}').replace('{m1}', f'{e:%Y/%m/%d}') for k, v in form.items()}
+                st, body, ct = fetch(url, f2, tries=2)
+                mark(url, ds, st == 200)
+                ok, info = csv_ok(body) if st == 200 else (False, f'HTTP {st}')
+                if ok:
+                    break
             log.append({'ds': ds, 'date': key, 'ok': ok, 'info': info})
             if ok:
                 save(ds, key, body, 'csv')
