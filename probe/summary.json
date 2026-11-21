@@ -1,6 +1,6 @@
 {
  "day": "2026-11-19",
- "at": "2026-11-22 01:43",
+ "at": "2026-11-22 02:29",
  "results": [
   {
    "name": "twse_margin",
@@ -9,7 +9,7 @@
    "status": 200,
    "type": "application/json;charset=UTF-8",
    "bytes": 130964,
-   "sec": 1.7
+   "sec": 1.9
   },
   {
    "name": "tpex_margin",
@@ -18,50 +18,20 @@
    "status": 200,
    "type": "application/json;charset=UTF-8",
    "bytes": 107963,
-   "sec": 1.7
+   "sec": 0.6
   },
   {
-   "name": "tpex_sbl",
-   "url": "https://www.tpex.org.tw/www/zh-tw/margin/sbl?date=2026/11/19&response=json",
-   "form": null,
-   "status": 200,
-   "type": "application/json;charset=UTF-8",
-   "bytes": 98928,
-   "sec": 2.6
-  },
-  {
-   "name": "tpex_qfii",
-   "url": "https://www.tpex.org.tw/www/zh-tw/insti/qfii?date=2026/11/19&response=json",
-   "form": null,
-   "status": 200,
-   "type": "application/json;charset=UTF-8",
-   "bytes": 82280,
-   "sec": 2.6
-  },
-  {
-   "name": "taifex_pcr_csv",
-   "url": "https://www.taifex.com.tw/cht/3/pcRatioDown",
-   "form": {
-    "queryStartDate": "2026/10/20",
-    "queryEndDate": "2026/11/19"
-   },
-   "status": 200,
-   "type": "text/html;charset=MS950",
-   "bytes": 1183,
-   "sec": 1.0
-  },
-  {
-   "name": "taifex_txf_year",
+   "name": "taifex_txf_today",
    "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
    "form": {
-    "queryStartDate": "2025/11/19",
-    "queryEndDate": "2026/11/19",
+    "queryStartDate": "2026/10/20",
+    "queryEndDate": "2026/11/22",
     "commodityId": "TXF"
    },
    "status": 200,
-   "type": "text/html;charset=MS950",
-   "bytes": 85250,
-   "sec": 5.1
+   "type": "text/html;charset=UTF-8",
+   "bytes": 611,
+   "sec": 0.3
   }
  ]
 }
