@@ -32,6 +32,13 @@ DATED = {
     'twse_margin': 'https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date={ymd}&selectType=ALL&response=json',
     'twse_sbl': 'https://www.twse.com.tw/rwd/zh/marginTrading/TWT93U?date={ymd}&response=json',
     'twse_qfii': 'https://www.twse.com.tw/rwd/zh/fund/MI_QFIIS?date={ymd}&selectType=ALLBUT0999&response=json',
+    'tpex_margin': 'https://www.tpex.org.tw/www/zh-tw/margin/balance?date={ymds}&response=json',
+    'tpex_sbl': 'https://www.tpex.org.tw/www/zh-tw/margin/sbl?date={ymds}&response=json',
+    'tpex_qfii': 'https://www.tpex.org.tw/www/zh-tw/insti/qfii?date={ymds}&response=json',
+}
+# 期交所歷史資料（一次下載一個月，存成 raw/<資料集>/<YYYY-MM>.csv.gz；當月每次重抓）
+MONTHLY = {
+    'taifex_txf': ('https://www.taifex.com.tw/cht/3/futContractsDateDown', {'queryStartDate': '{m0}', 'queryEndDate': '{m1}', 'commodityId': 'TXF'}),
 }
 # 只有最新一天的資料集（日期從內容判斷）
 LATEST = {
@@ -43,26 +50,11 @@ LATEST = {
 # 找網址格式用的候選
 PROBE = [
     ('twse_margin', DATED['twse_margin'], None),
-    ('twse_sbl', DATED['twse_sbl'], None),
-    ('twse_qfii', DATED['twse_qfii'], None),
-    ('tpex_margin_www', 'https://www.tpex.org.tw/www/zh-tw/margin/balance?date={ymds}&response=json', None),
-    ('tpex_margin_www_post', 'https://www.tpex.org.tw/www/zh-tw/margin/balance', {'date': '{ymds}', 'response': 'json'}),
-    ('tpex_margin_legacy', 'https://www.tpex.org.tw/web/stock/margin_trading/margin_balance/margin_bal_result.php?l=zh-tw&o=json&d={roc}', None),
-    ('tpex_sbl_www', 'https://www.tpex.org.tw/www/zh-tw/margin/sbl?date={ymds}&response=json', None),
-    ('tpex_sbl_legacy', 'https://www.tpex.org.tw/web/stock/margin_trading/margin_sbl/margin_sbl_result.php?l=zh-tw&o=json&d={roc}', None),
-    ('tpex_qfii_www', 'https://www.tpex.org.tw/www/zh-tw/insti/qfii?date={ymds}&response=json', None),
-    ('tpex_qfii_legacy', 'https://www.tpex.org.tw/web/stock/3insti/qfii/qfii_result.php?l=zh-tw&o=json&d={roc}', None),
-    ('tpex_openapi_swagger', 'https://www.tpex.org.tw/openapi/swagger.json', None),
-    ('twse_openapi_swagger', 'https://openapi.twse.com.tw/v1/swagger.json', None),
-    ('twse_openapi_margin', 'https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN', None),
-    ('taifex_swagger', 'https://openapi.taifex.com.tw/swagger.json', None),
-    ('taifex_swagger_v1', 'https://openapi.taifex.com.tw/v1/swagger.json', None),
-    ('tpex_margin_www_post_id', 'https://www.tpex.org.tw/www/zh-tw/margin/balance', {'date': '{ymds}', 'id': '', 'response': 'json'}),
-    ('tpex_quotes_www_post', 'https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQ', {'date': '{ymds}', 'type': 'EW', 'response': 'json'}),
-    ('taifex_inst_fo', LATEST['taifex_inst_fo'], None),
-    ('taifex_inst_fut', LATEST['taifex_inst_fut'], None),
-    ('taifex_pcr', LATEST['taifex_pcr'], None),
-    ('taifex_fut_csv', 'https://www.taifex.com.tw/cht/3/futContractsDateDown', {'queryStartDate': '{ymds_m30}', 'queryEndDate': '{ymds}', 'commodityId': 'TXF'}),
+    ('tpex_margin', DATED['tpex_margin'], None),
+    ('tpex_sbl', DATED['tpex_sbl'], None),
+    ('tpex_qfii', DATED['tpex_qfii'], None),
+    ('taifex_pcr_csv', 'https://www.taifex.com.tw/cht/3/pcRatioDown', {'queryStartDate': '{ymds_m30}', 'queryEndDate': '{ymds}'}),
+    ('taifex_txf_year', 'https://www.taifex.com.tw/cht/3/futContractsDateDown', {'queryStartDate': '{ymds_m365}', 'queryEndDate': '{ymds}', 'commodityId': 'TXF'}),
 ]
 
 _last = {}
@@ -113,30 +105,47 @@ def fetch(url, form=None, timeout=40, tries=3):
 
 def fmt(s, day):
     roc = f'{day.year - 1911}/{day:%m/%d}'
-    m30 = day - dt.timedelta(days=30)
-    return s.replace('{ymd}', f'{day:%Y%m%d}').replace('{ymds}', f'{day:%Y/%m/%d}').replace('{roc}', roc).replace('{ymds_m30}', f'{m30:%Y/%m/%d}')
+    m30, m365 = day - dt.timedelta(days=30), day - dt.timedelta(days=365)
+    return (s.replace('{ymd}', f'{day:%Y%m%d}').replace('{ymds}', f'{day:%Y/%m/%d}').replace('{roc}', roc)
+            .replace('{ymds_m30}', f'{m30:%Y/%m/%d}').replace('{ymds_m365}', f'{m365:%Y/%m/%d}'))
 
 
-def path(ds, date_iso):
-    return os.path.join(RAW, ds, f'{date_iso}.json.gz')
+def path(ds, key, ext='json'):
+    return os.path.join(RAW, ds, f'{key}.{ext}.gz')
 
 
-def save(ds, date_iso, body):
+def save(ds, key, body, ext='json'):
     os.makedirs(os.path.join(RAW, ds), exist_ok=True)
-    with gzip.open(path(ds, date_iso), 'wb', compresslevel=9) as f:
+    with gzip.open(path(ds, key, ext), 'wb', compresslevel=9) as f:
         f.write(body)
 
 
-def twse_ok(body):
-    """證交所 rwd 回應：stat 為 OK 而且有表格資料才算成功"""
+def resp_date(j):
+    """回應裡的資料日期（YYYYMMDD）：最外層 date，或第一個表格的 date（民國年或西元年）"""
+    cands = [j.get('date')] + [t.get('date') for t in (j.get('tables') or []) if isinstance(t, dict)][:1]
+    for v in cands:
+        v = str(v or '').strip().replace('-', '/')
+        if len(v) == 8 and v.isdigit():
+            return v
+        p = v.split('/')
+        if len(p) == 3 and all(x.isdigit() for x in p):
+            y = int(p[0]) + (1911 if int(p[0]) < 1911 else 0)
+            return f'{y:04d}{int(p[1]):02d}{int(p[2]):02d}'
+    return None
+
+
+def tw_ok(body, ymd):
+    """證交所、櫃買中心回應：有 stat 時必須是 OK，資料日期要等於查詢日期，而且有表格資料"""
     try:
-        j = json.loads(body.decode('utf-8'))
+        j = json.loads(body.decode('utf-8-sig'))
     except Exception:
         return False, 'not json'
-    st = str(j.get('stat', ''))
-    if st.upper() != 'OK':
-        return False, st[:60]
-    rows = sum(len(t.get('data') or []) for t in (j.get('tables') or [])) + len(j.get('data') or [])
+    if 'stat' in j and str(j.get('stat', '')).upper() != 'OK':
+        return False, str(j.get('stat'))[:60]
+    d = resp_date(j)
+    if d and d != ymd:
+        return False, f'date {d}'
+    rows = sum(len(t.get('data') or []) for t in (j.get('tables') or []) if isinstance(t, dict)) + len(j.get('data') or [])
     return rows > 0, f'rows={rows}'
 
 
@@ -151,17 +160,74 @@ def weekdays_back(n, start=None):
 
 
 def latest_date_of(body):
-    """期交所 OpenAPI 回應裡的日期（Date 欄，格式 20261120 或 2026/11/20）"""
+    """期交所 OpenAPI 回應裡的日期：JSON 的 Date 欄，或 CSV 第一筆資料的第一欄（20261120 或 2026/11/20）"""
+    txt = body.decode('utf-8-sig', 'replace')
+    v = ''
     try:
-        j = json.loads(body.decode('utf-8-sig'))
+        j = json.loads(txt)
+        if isinstance(j, list) and j and isinstance(j[0], dict):
+            v = str(j[0].get('Date') or j[0].get('日期') or '')
+    except Exception:
+        lines = [x for x in txt.splitlines() if x.strip()]
+        if len(lines) >= 2:
+            v = lines[1].split(',')[0]
+    v = v.replace('/', '').replace('-', '').strip()
+    if len(v) == 8 and v.isdigit():
+        return f'{v[:4]}-{v[4:6]}-{v[6:]}'
+    return None
+
+
+def months_back(n, today):
+    """最近 n 個月（含本月）：[(YYYY-MM, 月初, 月底或今天)]"""
+    out, y, m = [], today.year, today.month
+    for _ in range(n):
+        first = dt.date(y, m, 1)
+        nxt = dt.date(y + (m == 12), m % 12 + 1, 1)
+        out.append((f'{y:04d}-{m:02d}', first, min(nxt - dt.timedelta(days=1), today)))
+        y, m = (y - 1, 12) if m == 1 else (y, m - 1)
+    return out
+
+
+def csv_ok(body):
+    """期交所下載的 CSV（Big5／MS950）：第一列是欄位，至少一筆資料"""
+    try:
+        txt = body.decode('cp950')
+    except UnicodeDecodeError:
+        return False, 'not cp950'
+    lines = [x for x in txt.splitlines() if x.strip()]
+    if len(lines) < 2 or ',' not in lines[0] or '<' in lines[0]:
+        return False, (lines[0][:60] if lines else 'empty')
+    return True, f'rows={len(lines) - 1}'
+
+
+def csv_last_date(p):
+    """已存的月檔最後一筆資料日期（date），讀不到就回傳 None"""
+    try:
+        with gzip.open(p, 'rb') as f:
+            lines = [x for x in f.read().decode('cp950').splitlines() if x.strip()]
+        return dt.date(*map(int, lines[-1].split(',')[0].strip().split('/')))
     except Exception:
         return None
-    if isinstance(j, list) and j and isinstance(j[0], dict):
-        v = str(j[0].get('Date') or j[0].get('日期') or '')
-        v = v.replace('/', '').replace('-', '')
-        if len(v) == 8 and v.isdigit():
-            return f'{v[:4]}-{v[4:6]}-{v[6:]}'
-    return None
+
+
+def run_monthly(n, log):
+    today = dt.datetime.now(TW).date()
+    for ds, (url, form) in MONTHLY.items():
+        for key, d0, d1 in months_back(n, today):
+            last = csv_last_date(path(ds, key, 'csv'))
+            # 本月每次重抓；以前的月份，已存的檔案最後一天離月底超過 6 天（月中存的不完整檔）也重抓
+            if key != f'{today:%Y-%m}' and last and last >= d1 - dt.timedelta(days=6):
+                continue
+            if blocked(url, ds):
+                log.append({'ds': ds, 'date': key, 'ok': False, 'info': 'skipped: failing'})
+                continue
+            f2 = {k: v.replace('{m0}', f'{d0:%Y/%m/%d}').replace('{m1}', f'{d1:%Y/%m/%d}') for k, v in form.items()}
+            st, body, ct = fetch(url, f2, tries=2)
+            mark(url, ds, st == 200)
+            ok, info = csv_ok(body) if st == 200 else (False, f'HTTP {st}')
+            log.append({'ds': ds, 'date': key, 'ok': ok, 'info': info})
+            if ok:
+                save(ds, key, body, 'csv')
 
 
 def run_dated(days, log):
@@ -179,7 +245,7 @@ def run_dated(days, log):
                 continue
             st, body, ct = fetch(url, tries=2)
             mark(url, ds, st == 200)
-            ok, info = twse_ok(body) if st == 200 else (False, f'HTTP {st} {body[:80]!r}')
+            ok, info = tw_ok(body, f'{day:%Y%m%d}') if st == 200 else (False, f'HTTP {st} {body[:80]!r}')
             log.append({'ds': ds, 'date': iso, 'ok': ok, 'info': info})
             if ok:
                 save(ds, iso, body)
@@ -201,8 +267,8 @@ def run_latest(log):
 def prune():
     cut = (dt.datetime.now(TW).date() - dt.timedelta(days=KEEP_DAYS)).isoformat()
     for ds in os.listdir(RAW) if os.path.isdir(RAW) else []:
-        for fn in os.listdir(os.path.join(RAW, ds)):
-            if fn[:10] < cut:
+        for fn in os.listdir(os.path.join(RAW, ds)) if os.path.isdir(os.path.join(RAW, ds)) else []:
+            if fn.endswith('.gz') and fn.split('.')[0] < cut[:len(fn.split('.')[0])]:
                 os.remove(os.path.join(RAW, ds, fn))
 
 
@@ -212,7 +278,7 @@ def manifest(log):
         ds_dir = os.path.join(RAW, ds)
         if not os.path.isdir(ds_dir):
             continue
-        dates = sorted(fn[:10] for fn in os.listdir(ds_dir) if fn.endswith('.json.gz'))
+        dates = sorted(fn.split('.')[0] for fn in os.listdir(ds_dir) if fn.endswith('.gz'))
         m['datasets'][ds] = {'n': len(dates), 'first': dates[0] if dates else None, 'last': dates[-1] if dates else None}
     with open(os.path.join(RAW, 'manifest.json'), 'w', encoding='utf-8') as f:
         json.dump(m, f, ensure_ascii=False, indent=1)
@@ -249,6 +315,7 @@ def main():
         return
     log = []
     run_dated(weekdays_back(n if mode == 'backfill' and n > 0 else 6), log)
+    run_monthly(13 if mode == 'backfill' else 2, log)
     run_latest(log)
     prune()
     manifest(log)
