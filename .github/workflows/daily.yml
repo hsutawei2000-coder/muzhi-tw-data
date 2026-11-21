@@ -1,0 +1,54 @@
+name: 每日下載
+on:
+  schedule:
+    - cron: '40 8 * * 1-5'    # 台北 16:40（收盤後，信用交易、借券資料陸續公布）
+    - cron: '25 13 * * 1-5'   # 台北 21:25（外資持股、期交所資料補齊）
+    - cron: '5 23 * * 0-4'    # 台北隔天 07:05（再補一次）
+  push:
+    branches: [main]
+    paths: ['fetch.py', '.github/workflows/daily.yml', 'backfill.txt']
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'daily、backfill 或 probe'
+        default: 'daily'
+      days:
+        description: 'backfill 要回補的平日天數'
+        default: '0'
+permissions:
+  contents: write
+concurrency:
+  group: fetch
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    steps:
+      - uses: actions/checkout@v4
+      - name: 下載
+        timeout-minutes: 150
+        env:
+          EVENT: ${{ github.event_name }}
+          MODE: ${{ github.event.inputs.mode || 'daily' }}
+          DAYS: ${{ github.event.inputs.days || '0' }}
+        run: |
+          case "$DAYS" in ''|*[!0-9]*) DAYS=0;; esac
+          if [ "$EVENT" = "push" ]; then
+            # 程式更新時：先測網址，再依 backfill.txt 的天數回補（沒有就抓最近幾天）
+            python3 fetch.py probe || true
+            N=$(tr -cd '0-9' < backfill.txt 2>/dev/null || true)
+            if [ -n "$N" ] && [ "$N" -gt 0 ]; then python3 fetch.py backfill "$N"; else python3 fetch.py daily 0; fi
+          else
+            case "$MODE" in daily|backfill|probe) ;; *) echo "mode 只能是 daily、backfill、probe"; exit 1;; esac
+            python3 fetch.py "$MODE" "$DAYS"
+          fi
+      - name: 存回倉庫
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A raw probe 2>/dev/null || true
+          if git diff --cached --quiet; then echo "沒有新資料"; exit 0; fi
+          git commit -q -m "資料 $(TZ=Asia/Taipei date '+%F %H:%M')"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
