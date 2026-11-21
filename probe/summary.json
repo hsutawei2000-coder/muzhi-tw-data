@@ -1,0 +1,210 @@
+{
+ "day": "2026-11-19",
+ "at": "2026-11-22 00:49",
+ "results": [
+  {
+   "name": "twse_margin",
+   "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261119&selectType=ALL&response=json",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 130964,
+   "sec": 2.2
+  },
+  {
+   "name": "twse_sbl",
+   "url": "https://www.twse.com.tw/rwd/zh/marginTrading/TWT93U?date=20261119&response=json",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 155350,
+   "sec": 3.7
+  },
+  {
+   "name": "twse_qfii",
+   "url": "https://www.twse.com.tw/rwd/zh/fund/MI_QFIIS?date=20261119&selectType=ALLBUT0999&response=json",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 168898,
+   "sec": 4.6
+  },
+  {
+   "name": "tpex_margin_www",
+   "url": "https://www.tpex.org.tw/www/zh-tw/margin/balance?date=2026/11/19&response=json",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 107963,
+   "sec": 1.3
+  },
+  {
+   "name": "tpex_margin_www_post",
+   "url": "https://www.tpex.org.tw/www/zh-tw/margin/balance",
+   "form": {
+    "date": "2026/11/19",
+    "response": "json"
+   },
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 107963,
+   "sec": 2.0
+  },
+  {
+   "name": "tpex_margin_legacy",
+   "url": "https://www.tpex.org.tw/web/stock/margin_trading/margin_balance/margin_bal_result.php?l=zh-tw&o=json&d=115/11/19",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 107963,
+   "sec": 3.2
+  },
+  {
+   "name": "tpex_sbl_www",
+   "url": "https://www.tpex.org.tw/www/zh-tw/margin/sbl?date=2026/11/19&response=json",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 98928,
+   "sec": 3.5
+  },
+  {
+   "name": "tpex_sbl_legacy",
+   "url": "https://www.tpex.org.tw/web/stock/margin_trading/margin_sbl/margin_sbl_result.php?l=zh-tw&o=json&d=115/11/19",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 98928,
+   "sec": 2.5
+  },
+  {
+   "name": "tpex_qfii_www",
+   "url": "https://www.tpex.org.tw/www/zh-tw/insti/qfii?date=2026/11/19&response=json",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 82280,
+   "sec": 3.2
+  },
+  {
+   "name": "tpex_qfii_legacy",
+   "url": "https://www.tpex.org.tw/web/stock/3insti/qfii/qfii_result.php?l=zh-tw&o=json&d=115/11/19",
+   "form": null,
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 82280,
+   "sec": 4.1
+  },
+  {
+   "name": "tpex_openapi_swagger",
+   "url": "https://www.tpex.org.tw/openapi/swagger.json",
+   "form": null,
+   "status": 200,
+   "type": "application/json",
+   "bytes": 476923,
+   "sec": 2.4
+  },
+  {
+   "name": "twse_openapi_swagger",
+   "url": "https://openapi.twse.com.tw/v1/swagger.json",
+   "form": null,
+   "status": 200,
+   "type": "application/json",
+   "bytes": 309984,
+   "sec": 2.0
+  },
+  {
+   "name": "twse_openapi_margin",
+   "url": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
+   "form": null,
+   "status": 200,
+   "type": "application/json",
+   "bytes": 473897,
+   "sec": 2.7
+  },
+  {
+   "name": "taifex_swagger",
+   "url": "https://openapi.taifex.com.tw/swagger.json",
+   "form": null,
+   "status": 200,
+   "type": "application/json",
+   "bytes": 163097,
+   "sec": 3.1
+  },
+  {
+   "name": "taifex_swagger_v1",
+   "url": "https://openapi.taifex.com.tw/v1/swagger.json",
+   "form": null,
+   "status": 200,
+   "type": "text/html; charset=UTF-8",
+   "bytes": 1801,
+   "sec": 3.3
+  },
+  {
+   "name": "tpex_margin_www_post_id",
+   "url": "https://www.tpex.org.tw/www/zh-tw/margin/balance",
+   "form": {
+    "date": "2026/11/19",
+    "id": "",
+    "response": "json"
+   },
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 107963,
+   "sec": 0.6
+  },
+  {
+   "name": "tpex_quotes_www_post",
+   "url": "https://www.tpex.org.tw/www/zh-tw/afterTrading/dailyQ",
+   "form": {
+    "date": "2026/11/19",
+    "type": "EW",
+    "response": "json"
+   },
+   "status": 200,
+   "type": "text/html",
+   "bytes": 11068,
+   "sec": 3.4
+  },
+  {
+   "name": "taifex_inst_fo",
+   "url": "https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDividedByFuturesAndOptionsBytheDate",
+   "form": null,
+   "status": 200,
+   "type": "application/octet-stream",
+   "bytes": 1511,
+   "sec": 2.2
+  },
+  {
+   "name": "taifex_inst_fut",
+   "url": "https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfFuturesContractsBytheDate",
+   "form": null,
+   "status": 200,
+   "type": "application/octet-stream",
+   "bytes": 33963,
+   "sec": 0.8
+  },
+  {
+   "name": "taifex_pcr",
+   "url": "https://openapi.taifex.com.tw/v1/PutCallRatio",
+   "form": null,
+   "status": 200,
+   "type": "application/octet-stream",
+   "bytes": 3231,
+   "sec": 3.0
+  },
+  {
+   "name": "taifex_fut_csv",
+   "url": "https://www.taifex.com.tw/cht/3/futContractsDateDown",
+   "form": {
+    "queryStartDate": "2026/10/20",
+    "queryEndDate": "2026/11/19",
+    "commodityId": "TXF"
+   },
+   "status": 200,
+   "type": "text/html;charset=MS950",
+   "bytes": 7712,
+   "sec": 2.3
+  }
+ ]
+}

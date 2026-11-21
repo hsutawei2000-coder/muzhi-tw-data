@@ -1,0 +1,517 @@
+{
+ "updated": "2026-11-22 01:39",
+ "datasets": {
+  "taifex_inst_cp": {
+   "n": 1,
+   "first": "2026-11-20",
+   "last": "2026-11-20"
+  },
+  "taifex_inst_fut": {
+   "n": 1,
+   "first": "2026-11-20",
+   "last": "2026-11-20"
+  },
+  "taifex_pcr": {
+   "n": 1,
+   "first": "2026-11-20",
+   "last": "2026-11-20"
+  },
+  "twse_margin": {
+   "n": 230,
+   "first": "2025-12-08",
+   "last": "2026-11-20"
+  },
+  "twse_qfii": {
+   "n": 232,
+   "first": "2025-12-08",
+   "last": "2026-11-20"
+  },
+  "twse_sbl": {
+   "n": 230,
+   "first": "2025-12-08",
+   "last": "2026-11-20"
+  }
+ },
+ "lastRun": [
+  {
+   "ds": "twse_qfii",
+   "date": "2026-01-12",
+   "ok": true,
+   "info": "rows=1313"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2026-01-09",
+   "ok": true,
+   "info": "rows=1249"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-01-09",
+   "ok": true,
+   "info": "rows=1251"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-01-09",
+   "ok": true,
+   "info": "rows=1313"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2026-01-08",
+   "ok": true,
+   "info": "rows=1249"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-01-08",
+   "ok": true,
+   "info": "rows=1252"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-01-08",
+   "ok": true,
+   "info": "rows=1313"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2026-01-07",
+   "ok": true,
+   "info": "rows=1249"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-01-07",
+   "ok": true,
+   "info": "rows=1252"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-01-07",
+   "ok": true,
+   "info": "rows=1313"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2026-01-06",
+   "ok": true,
+   "info": "rows=1249"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-01-06",
+   "ok": true,
+   "info": "rows=1252"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-01-06",
+   "ok": true,
+   "info": "rows=1313"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2026-01-05",
+   "ok": true,
+   "info": "rows=1248"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-01-05",
+   "ok": true,
+   "info": "rows=1251"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-01-05",
+   "ok": true,
+   "info": "rows=1311"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2026-01-02",
+   "ok": true,
+   "info": "rows=1248"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-01-02",
+   "ok": true,
+   "info": "rows=1251"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-01-02",
+   "ok": true,
+   "info": "rows=1311"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2026-01-01",
+   "ok": false,
+   "info": "很抱歉，沒有符合條件的資料"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-01-01",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-01-01",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-31",
+   "ok": true,
+   "info": "rows=1248"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-31",
+   "ok": true,
+   "info": "rows=1251"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-31",
+   "ok": true,
+   "info": "rows=1311"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-30",
+   "ok": true,
+   "info": "rows=1248"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-30",
+   "ok": true,
+   "info": "rows=1249"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-30",
+   "ok": true,
+   "info": "rows=1311"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-29",
+   "ok": true,
+   "info": "rows=1248"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-29",
+   "ok": true,
+   "info": "rows=1249"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-29",
+   "ok": true,
+   "info": "rows=1311"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-26",
+   "ok": true,
+   "info": "rows=1246"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-26",
+   "ok": true,
+   "info": "rows=1247"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-26",
+   "ok": true,
+   "info": "rows=1309"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-25",
+   "ok": false,
+   "info": "很抱歉，沒有符合條件的資料"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-25",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-25",
+   "ok": false,
+   "info": "rows=0"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-24",
+   "ok": true,
+   "info": "rows=1246"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-24",
+   "ok": true,
+   "info": "rows=1247"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-24",
+   "ok": true,
+   "info": "rows=1309"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-23",
+   "ok": true,
+   "info": "rows=1245"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-23",
+   "ok": true,
+   "info": "rows=1246"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-23",
+   "ok": true,
+   "info": "rows=1308"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-22",
+   "ok": true,
+   "info": "rows=1244"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-22",
+   "ok": true,
+   "info": "rows=1245"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-22",
+   "ok": true,
+   "info": "rows=1308"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-19",
+   "ok": true,
+   "info": "rows=1244"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-19",
+   "ok": true,
+   "info": "rows=1245"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-19",
+   "ok": true,
+   "info": "rows=1307"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-18",
+   "ok": true,
+   "info": "rows=1243"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-18",
+   "ok": true,
+   "info": "rows=1243"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-18",
+   "ok": true,
+   "info": "rows=1305"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-17",
+   "ok": true,
+   "info": "rows=1242"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-17",
+   "ok": true,
+   "info": "rows=1243"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-17",
+   "ok": true,
+   "info": "rows=1305"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-16",
+   "ok": true,
+   "info": "rows=1241"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-16",
+   "ok": true,
+   "info": "rows=1242"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-16",
+   "ok": true,
+   "info": "rows=1304"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-15",
+   "ok": true,
+   "info": "rows=1241"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-15",
+   "ok": true,
+   "info": "rows=1242"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-15",
+   "ok": true,
+   "info": "rows=1304"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-12",
+   "ok": true,
+   "info": "rows=1240"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-12",
+   "ok": true,
+   "info": "rows=1241"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-12",
+   "ok": true,
+   "info": "rows=1304"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-11",
+   "ok": true,
+   "info": "rows=1240"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-11",
+   "ok": true,
+   "info": "rows=1241"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-11",
+   "ok": true,
+   "info": "rows=1304"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-10",
+   "ok": true,
+   "info": "rows=1239"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-10",
+   "ok": true,
+   "info": "rows=1240"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-10",
+   "ok": true,
+   "info": "rows=1304"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-09",
+   "ok": true,
+   "info": "rows=1239"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-09",
+   "ok": true,
+   "info": "rows=1240"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-09",
+   "ok": true,
+   "info": "rows=1304"
+  },
+  {
+   "ds": "twse_margin",
+   "date": "2025-12-08",
+   "ok": true,
+   "info": "rows=1239"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2025-12-08",
+   "ok": true,
+   "info": "rows=1240"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2025-12-08",
+   "ok": true,
+   "info": "rows=1304"
+  },
+  {
+   "ds": "taifex_inst_fo",
+   "date": null,
+   "ok": false,
+   "info": "HTTP 200 1511B"
+  },
+  {
+   "ds": "taifex_inst_fut",
+   "date": "2026-11-20",
+   "ok": true,
+   "info": "HTTP 200 33963B"
+  },
+  {
+   "ds": "taifex_inst_cp",
+   "date": "2026-11-20",
+   "ok": true,
+   "info": "HTTP 200 15613B"
+  },
+  {
+   "ds": "taifex_pcr",
+   "date": "2026-11-20",
+   "ok": true,
+   "info": "HTTP 200 3231B"
+  }
+ ]
+}
