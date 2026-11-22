@@ -6,6 +6,7 @@
   python3 fetch.py daily            抓最近幾個交易日還沒有的資料
   python3 fetch.py backfill 250     回補最近 250 個平日（證交所、櫃買中心有日期參數的資料）
   python3 fetch.py probe            測試候選網址，結果寫到 probe/（找網址格式用）
+除權除息結果表從 2010 年起每月一檔長期保存；證交所除權明細每輪補 EXRD_MAX 筆。
 只用 Python 標準函式庫。
 """
 import datetime as dt
@@ -48,21 +49,32 @@ LATEST = {
     'taifex_inst_cp': 'https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfCallsAndPutsBytheDate',
     'taifex_pcr': 'https://openapi.taifex.com.tw/v1/PutCallRatio',
 }
+# 除權除息計算結果表：一次抓一個月，存成 raw/<資料集>/<YYYY-MM>.json.gz，從 EXR_FROM 起長期保存
+# {a}{b}=20250601、20250630；{as}{bs}=2025/06/01、2025/06/30
+EXR = {
+    'twse_exr': 'https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate={a}&endDate={b}&response=json',
+    'tpex_exr': 'https://www.tpex.org.tw/www/zh-tw/bulletin/exDailyQ?startDate={as}&endDate={bs}&response=json',
+}
+EXR_FROM = (2010, 1)
+# 證交所的結果表只有「權值+息值」：除權、權息要另外查明細，才分得出現金股利、無償配股與現金增資
+EXRD_URL = 'https://www.twse.com.tw/rwd/zh/exRight/TWT49UDetail?STK_NO={code}&T1={ymd}&response=json'
+EXRD_MAX = 400  # 每一輪最多補幾筆明細（回補舊資料分幾輪做）
+# 只保留最新一份的資料（存成 raw/<資料集>/latest.json.gz，內容沒變就不重寫）
+SNAP = {
+    'twse_exr_pre': 'https://www.twse.com.tw/rwd/zh/exRight/TWT48U?response=json',   # 上市除權除息預告
+    'tpex_exr_pre': 'https://www.tpex.org.tw/openapi/v1/tpex_exright_prepost',        # 上櫃除權除息預告
+    'twse_divpol': 'https://openapi.twse.com.tw/v1/opendata/t187ap45_L',              # 上市公司股利分派情形
+    'tpex_divpol': 'https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap39_O',           # 上櫃股利分派情形（董事會通過）
+}
+SNAP_DROP = ('摘錄公司章程',)  # 股利分派情形裡的章程全文很長，存檔前拿掉
+KEEP_ALL = {'twse_exr', 'tpex_exr', 'twse_exrd'} | set(SNAP)  # 不受 KEEP_DAYS 刪除
+
 # 找網址格式用的候選（第四欄：要存多少位元組，預設 6000）
 PROBE = [
-    ('twse_t49u_m', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20250601&endDate=20250630&response=json', None, 20000),
-    ('twse_t49u_y2024', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20240101&endDate=20241231&response=json', None, 3000),
-    ('twse_t49u_y2012', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20120101&endDate=20121231&response=json', None, 3000),
-    ('twse_t49u_detail', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49UDetail?STK_NO=2330&T1=20250612&response=json', None, 6000),
-    ('twse_t48u_range', 'https://www.twse.com.tw/rwd/zh/exRight/TWT48U?startDate=20250601&endDate=20250630&response=json', None, 12000),
-    ('twse_t48u', 'https://www.twse.com.tw/rwd/zh/exRight/TWT48U?response=json', None, 6000),
-    ('twse_t187ap45', 'https://openapi.twse.com.tw/v1/opendata/t187ap45_L', None, 6000),
-    ('twse_openapi_swagger', 'https://openapi.twse.com.tw/v1/swagger.json', None, 400000),
-    ('tpex_openapi_swagger', 'https://www.tpex.org.tw/openapi/swagger.json', None, 400000),
-    ('tpex_exd_old', 'https://www.tpex.org.tw/web/stock/exright/dailyquo/exDailyQ_result.php?l=zh-tw&d=114/06/01&ed=114/06/30', None, 12000),
-    ('tpex_exd_new', 'https://www.tpex.org.tw/www/zh-tw/exRight/dailyQuo?startDate=2025/06/01&endDate=2025/06/30&response=json', None, 12000),
-    ('tpex_exd_new2', 'https://www.tpex.org.tw/www/zh-tw/bulletin/exDailyQ?startDate=2025/06/01&endDate=2025/06/30&response=json', None, 12000),
-    ('tpex_home', 'https://www.tpex.org.tw/zh-tw/index.html', None, 400000),
+    ('tpex_exr_pre', SNAP['tpex_exr_pre'], None, 6000),
+    ('tpex_divpol', SNAP['tpex_divpol'], None, 6000),
+    ('twse_t49u_d2012', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49UDetail?STK_NO=2610&T1=20120109&response=json', None, 3000),
+    ('tpex_exr_2010', 'https://www.tpex.org.tw/www/zh-tw/bulletin/exDailyQ?startDate=2010/07/01&endDate=2010/07/31&response=json', None, 3000),
 ]
 
 _last = {}
@@ -127,6 +139,25 @@ def save(ds, key, body, ext='json'):
     os.makedirs(os.path.join(RAW, ds), exist_ok=True)
     with gzip.open(path(ds, key, ext), 'wb', compresslevel=9) as f:
         f.write(body)
+
+
+def load_raw(ds, key, ext='json'):
+    try:
+        with gzip.open(path(ds, key, ext), 'rb') as f:
+            return f.read()
+    except Exception:
+        return None
+
+
+def save_same(ds, key, body, ext='json'):
+    """內容和已存的一樣就不重寫；gzip 不記時間，同樣內容存出來的檔案也一樣，git 才不會每次都有變更"""
+    if load_raw(ds, key, ext) == body:
+        return False
+    os.makedirs(os.path.join(RAW, ds), exist_ok=True)
+    with open(path(ds, key, ext), 'wb') as raw:
+        with gzip.GzipFile(fileobj=raw, mode='wb', compresslevel=9, mtime=0) as f:
+            f.write(body)
+    return True
 
 
 def resp_date(j):
@@ -286,9 +317,143 @@ def run_latest(log):
             save(ds, d, body)
 
 
+def exr_months(today):
+    """EXR_FROM 到本月：[(YYYY-MM, 月初, 月底或今天)]"""
+    out, (y, m) = [], EXR_FROM
+    while (y, m) <= (today.year, today.month):
+        first = dt.date(y, m, 1)
+        nxt = dt.date(y + (m == 12), m % 12 + 1, 1)
+        out.append((f'{y:04d}-{m:02d}', first, min(nxt - dt.timedelta(days=1), today)))
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    return out
+
+
+def exr_ok(ds, body, d0, d1):
+    """結果表回應：查詢區間要對得上；沒有除權息的月份算成功（存空表），其他錯誤算失敗。回傳 (成功, 筆數或原因)"""
+    try:
+        j = json.loads(body.decode('utf-8-sig'))
+    except Exception:
+        return False, 'not json'
+    if ds == 'twse_exr':
+        st = str(j.get('stat', ''))
+        if st.upper() != 'OK':
+            return ('沒有符合' in st), st[:40]
+        want = f'{d0.year - 1911}年{d0:%m}月{d0:%d}日'
+        if not str(j.get('title', '')).startswith(want):
+            return False, 'title ' + str(j.get('title', ''))[:30]
+        return True, len(j.get('data') or [])
+    if str(j.get('date', '')) != f'{d0:%Y%m%d}~{d1:%Y%m%d}':
+        return False, 'date ' + str(j.get('date', ''))[:30]
+    t = (j.get('tables') or [{}])[0]
+    return isinstance(t.get('data', []), list), len(t.get('data') or [])
+
+
+def run_exr(log):
+    today = dt.datetime.now(TW).date()
+    months = exr_months(today)
+    recent = {k for k, _, _ in months[-2:]}  # 本月、上個月每次重抓
+    for ds, tpl in EXR.items():
+        for key, d0, d1 in reversed(months):
+            if key not in recent and os.path.exists(path(ds, key)):
+                continue
+            url = (tpl.replace('{as}', f'{d0:%Y/%m/%d}').replace('{bs}', f'{d1:%Y/%m/%d}')
+                   .replace('{a}', f'{d0:%Y%m%d}').replace('{b}', f'{d1:%Y%m%d}'))
+            if blocked(url, ds):
+                log.append({'ds': ds, 'date': key, 'ok': False, 'info': 'skipped: failing'})
+                continue
+            st, body, ct = fetch(url, timeout=90, tries=2)
+            mark(url, ds, st == 200)
+            ok, info = exr_ok(ds, body, d0, d1) if st == 200 else (False, f'HTTP {st}')
+            if key not in recent or not ok:
+                log.append({'ds': ds, 'date': key, 'ok': ok, 'info': info})
+            if ok:
+                save_same(ds, key, body)
+
+
+def run_exrd(log):
+    """證交所除權、權息事件的明細：新到舊補，存成 raw/twse_exrd/<年>.json.gz（{"代號,日期": 明細列}）；
+    查得到但沒有資料的記成 null，下次不再查"""
+    want = []
+    for fn in sorted(os.listdir(os.path.join(RAW, 'twse_exr')) if os.path.isdir(os.path.join(RAW, 'twse_exr')) else [], reverse=True):
+        try:
+            j = json.loads(gzip.open(os.path.join(RAW, 'twse_exr', fn)).read().decode('utf-8-sig'))
+        except Exception:
+            continue
+        for row in reversed(j.get('data') or []):
+            if len(row) > 11 and str(row[6]).strip() in ('權', '權息'):
+                k = str(row[11]).replace(' ', '')
+                if ',' in k and len(k.split(',')[1]) == 8:
+                    want.append(k)
+    books, todo = {}, []
+    for k in want:
+        y = k.split(',')[1][:4]
+        if y not in books:
+            b = load_raw('twse_exrd', y)
+            books[y] = json.loads(b) if b else {'fields': None, 'rows': {}}
+        if k not in books[y]['rows']:
+            todo.append(k)
+    done = 0
+    for k in todo[:EXRD_MAX]:
+        code, ymd = k.split(',')
+        url = EXRD_URL.format(code=urllib.parse.quote(code), ymd=ymd)
+        if blocked(url, 'twse_exrd'):
+            log.append({'ds': 'twse_exrd', 'date': ymd, 'ok': False, 'info': 'skipped: failing'})
+            break
+        st, body, ct = fetch(url, tries=2)
+        mark(url, 'twse_exrd', st == 200)
+        if st != 200:
+            log.append({'ds': 'twse_exrd', 'date': ymd, 'ok': False, 'info': f'{code} HTTP {st}'})
+            continue
+        try:
+            j = json.loads(body.decode('utf-8-sig'))
+        except Exception:
+            log.append({'ds': 'twse_exrd', 'date': ymd, 'ok': False, 'info': f'{code} not json'})
+            continue
+        bk = books[ymd[:4]]
+        rows = j.get('data') or []
+        if str(j.get('stat', '')).lower() == 'ok' and rows and str(rows[0][0]).strip() == code:
+            bk['fields'] = bk['fields'] or j.get('fields')
+            bk['rows'][k] = rows[0]
+            done += 1
+        elif str(j.get('stat', '')).lower() in ('ok', '') or '沒有' in str(j.get('stat', '')):
+            bk['rows'][k] = None
+        else:
+            log.append({'ds': 'twse_exrd', 'date': ymd, 'ok': False, 'info': f"{code} {str(j.get('stat'))[:40]}"})
+    for y, bk in books.items():
+        save_same('twse_exrd', y, json.dumps(bk, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode())
+    left = len(todo) - min(len(todo), EXRD_MAX)
+    log.append({'ds': 'twse_exrd', 'date': None, 'ok': True, 'info': f'new={done} todo={len(todo)} left={left}'})
+
+
+def run_snap(log):
+    for ds, url in SNAP.items():
+        if blocked(url, ds):
+            log.append({'ds': ds, 'date': None, 'ok': False, 'info': 'skipped: failing'})
+            continue
+        st, body, ct = fetch(url, timeout=90)
+        mark(url, ds, st == 200)
+        ok, info = False, f'HTTP {st}'
+        if st == 200:
+            try:
+                j = json.loads(body.decode('utf-8-sig'))
+                if isinstance(j, list):
+                    j = [{k: v for k, v in x.items() if not any(k.startswith(d) for d in SNAP_DROP)} if isinstance(x, dict) else x for x in j]
+                    ok, info = len(j) > 0, f'rows={len(j)}'
+                else:
+                    ok = str(j.get('stat', 'OK')).upper() == 'OK'
+                    info = f"rows={len(j.get('data') or [])}"
+                if ok:
+                    save_same(ds, 'latest', json.dumps(j, ensure_ascii=False, separators=(',', ':')).encode())
+            except Exception as e:
+                info = 'bad json ' + repr(e)[:40]
+        log.append({'ds': ds, 'date': None, 'ok': ok, 'info': info})
+
+
 def prune():
     cut = (dt.datetime.now(TW).date() - dt.timedelta(days=KEEP_DAYS)).isoformat()
     for ds in os.listdir(RAW) if os.path.isdir(RAW) else []:
+        if ds in KEEP_ALL:
+            continue
         for fn in os.listdir(os.path.join(RAW, ds)) if os.path.isdir(os.path.join(RAW, ds)) else []:
             if fn.endswith('.gz') and fn.split('.')[0] < cut[:len(fn.split('.')[0])]:
                 os.remove(os.path.join(RAW, ds, fn))
@@ -341,6 +506,9 @@ def main():
     run_dated(weekdays_back(n if mode == 'backfill' and n > 0 else 6), log)
     run_monthly(13 if mode == 'backfill' else 2, log)
     run_latest(log)
+    run_snap(log)
+    run_exr(log)
+    run_exrd(log)
     prune()
     manifest(log)
     ok = sum(1 for x in log if x['ok'])
