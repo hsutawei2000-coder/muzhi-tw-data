@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22 17:24",
+ "updated": "2026-11-22 18:23",
  "datasets": {
   "taifex_inst_cp": {
    "n": 1,
@@ -31,6 +31,21 @@
    "first": "2025-11",
    "last": "2026-11"
   },
+  "tpex_divpol": {
+   "n": 1,
+   "first": "latest",
+   "last": "latest"
+  },
+  "tpex_exr": {
+   "n": 203,
+   "first": "2010-01",
+   "last": "2026-11"
+  },
+  "tpex_exr_pre": {
+   "n": 1,
+   "first": "latest",
+   "last": "latest"
+  },
   "tpex_margin": {
    "n": 230,
    "first": "2025-12-08",
@@ -45,6 +60,26 @@
    "n": 230,
    "first": "2025-12-08",
    "last": "2026-11-20"
+  },
+  "twse_divpol": {
+   "n": 1,
+   "first": "latest",
+   "last": "latest"
+  },
+  "twse_exr": {
+   "n": 191,
+   "first": "2011-01",
+   "last": "2026-11"
+  },
+  "twse_exr_pre": {
+   "n": 1,
+   "first": "latest",
+   "last": "latest"
+  },
+  "twse_exrd": {
+   "n": 16,
+   "first": "2011",
+   "last": "2026"
   },
   "twse_margin": {
    "n": 230,
@@ -64,40 +99,484 @@
  },
  "lastRun": [
   {
-   "ds": "taifex_txf",
-   "date": "2026-11",
+   "ds": "tpex_exr",
+   "date": "2016-07",
    "ok": true,
-   "info": "rows=45"
+   "info": 203
   },
   {
-   "ds": "taifex_pcr_m",
-   "date": "2026-11",
+   "ds": "tpex_exr",
+   "date": "2016-06",
    "ok": true,
-   "info": "rows=15"
+   "info": 61
   },
   {
-   "ds": "taifex_inst_fo",
-   "date": "2026-11-20",
+   "ds": "tpex_exr",
+   "date": "2016-05",
    "ok": true,
-   "info": "HTTP 200 3506B"
+   "info": 1
   },
   {
-   "ds": "taifex_inst_fut",
-   "date": "2026-11-20",
+   "ds": "tpex_exr",
+   "date": "2016-04",
    "ok": true,
-   "info": "HTTP 200 33963B"
+   "info": 5
   },
   {
-   "ds": "taifex_inst_cp",
-   "date": "2026-11-20",
+   "ds": "tpex_exr",
+   "date": "2016-03",
    "ok": true,
-   "info": "HTTP 200 15613B"
+   "info": 1
   },
   {
-   "ds": "taifex_pcr",
-   "date": "2026-11-20",
+   "ds": "tpex_exr",
+   "date": "2016-02",
    "ok": true,
-   "info": "HTTP 200 3231B"
+   "info": 0
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2016-01",
+   "ok": true,
+   "info": 1
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-12",
+   "ok": true,
+   "info": 8
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-11",
+   "ok": true,
+   "info": 4
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-10",
+   "ok": true,
+   "info": 11
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-09",
+   "ok": true,
+   "info": 57
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-08",
+   "ok": true,
+   "info": 147
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-07",
+   "ok": true,
+   "info": 225
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-06",
+   "ok": true,
+   "info": 44
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-05",
+   "ok": true,
+   "info": 3
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-04",
+   "ok": true,
+   "info": 1
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-03",
+   "ok": true,
+   "info": 1
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-02",
+   "ok": true,
+   "info": 7
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2015-01",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-12",
+   "ok": true,
+   "info": 7
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-11",
+   "ok": true,
+   "info": 8
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-10",
+   "ok": true,
+   "info": 7
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-09",
+   "ok": true,
+   "info": 45
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-08",
+   "ok": true,
+   "info": 118
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-07",
+   "ok": true,
+   "info": 237
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-06",
+   "ok": true,
+   "info": 30
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-05",
+   "ok": true,
+   "info": 5
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-04",
+   "ok": true,
+   "info": 1
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-03",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-02",
+   "ok": true,
+   "info": 4
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2014-01",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-12",
+   "ok": true,
+   "info": 7
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-11",
+   "ok": true,
+   "info": 3
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-10",
+   "ok": true,
+   "info": 8
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-09",
+   "ok": true,
+   "info": 45
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-08",
+   "ok": true,
+   "info": 155
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-07",
+   "ok": true,
+   "info": 186
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-06",
+   "ok": true,
+   "info": 22
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-05",
+   "ok": true,
+   "info": 1
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-04",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-03",
+   "ok": true,
+   "info": 4
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-02",
+   "ok": true,
+   "info": 3
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2013-01",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-12",
+   "ok": true,
+   "info": 1
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-11",
+   "ok": true,
+   "info": 10
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-10",
+   "ok": true,
+   "info": 12
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-09",
+   "ok": true,
+   "info": 61
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-08",
+   "ok": true,
+   "info": 132
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-07",
+   "ok": true,
+   "info": 184
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-06",
+   "ok": true,
+   "info": 28
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-05",
+   "ok": true,
+   "info": 3
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-04",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-03",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-02",
+   "ok": true,
+   "info": 3
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2012-01",
+   "ok": true,
+   "info": 0
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-12",
+   "ok": true,
+   "info": 1
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-11",
+   "ok": true,
+   "info": 9
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-10",
+   "ok": true,
+   "info": 11
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-09",
+   "ok": true,
+   "info": 59
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-08",
+   "ok": true,
+   "info": 138
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-07",
+   "ok": true,
+   "info": 162
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-06",
+   "ok": true,
+   "info": 31
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-05",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-04",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-03",
+   "ok": true,
+   "info": 0
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-02",
+   "ok": true,
+   "info": 1
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2011-01",
+   "ok": true,
+   "info": 3
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-12",
+   "ok": true,
+   "info": 7
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-11",
+   "ok": true,
+   "info": 4
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-10",
+   "ok": true,
+   "info": 9
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-09",
+   "ok": true,
+   "info": 55
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-08",
+   "ok": true,
+   "info": 97
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-07",
+   "ok": true,
+   "info": 161
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-06",
+   "ok": true,
+   "info": 23
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-05",
+   "ok": true,
+   "info": 4
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-04",
+   "ok": true,
+   "info": 0
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-03",
+   "ok": true,
+   "info": 2
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-02",
+   "ok": true,
+   "info": 3
+  },
+  {
+   "ds": "tpex_exr",
+   "date": "2010-01",
+   "ok": true,
+   "info": 4
+  },
+  {
+   "ds": "twse_exrd",
+   "date": null,
+   "ok": true,
+   "info": "new=400 todo=2445 left=2045"
   }
  ]
 }
