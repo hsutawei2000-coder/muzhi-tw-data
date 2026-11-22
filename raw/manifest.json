@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22 02:31",
+ "updated": "2026-11-22 17:24",
  "datasets": {
   "taifex_inst_cp": {
    "n": 1,
@@ -64,78 +64,6 @@
  },
  "lastRun": [
   {
-   "ds": "twse_margin",
-   "date": "2026-10-26",
-   "ok": false,
-   "info": "很抱歉，沒有符合條件的資料"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-10-26",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-10-26",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "tpex_margin",
-   "date": "2026-10-26",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "tpex_sbl",
-   "date": "2026-10-26",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "tpex_qfii",
-   "date": "2026-10-26",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "twse_margin",
-   "date": "2026-10-23",
-   "ok": false,
-   "info": "很抱歉，沒有符合條件的資料"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-10-23",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-10-23",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "tpex_margin",
-   "date": "2026-10-23",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "tpex_sbl",
-   "date": "2026-10-23",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
-   "ds": "tpex_qfii",
-   "date": "2026-10-23",
-   "ok": false,
-   "info": "rows=0"
-  },
-  {
    "ds": "taifex_txf",
    "date": "2026-11",
    "ok": true,
@@ -148,82 +76,10 @@
    "info": "rows=15"
   },
   {
-   "ds": "taifex_pcr_m",
-   "date": "2026-10",
-   "ok": true,
-   "info": "rows=19"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-09",
-   "ok": true,
-   "info": "rows=20"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-08",
-   "ok": true,
-   "info": "rows=21"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-07",
-   "ok": true,
-   "info": "rows=22"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-06",
-   "ok": true,
-   "info": "rows=21"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-05",
-   "ok": true,
-   "info": "rows=20"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-04",
-   "ok": true,
-   "info": "rows=20"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-03",
-   "ok": true,
-   "info": "rows=22"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-02",
-   "ok": true,
-   "info": "rows=12"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2026-01",
-   "ok": true,
-   "info": "rows=21"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2025-12",
-   "ok": true,
-   "info": "rows=22"
-  },
-  {
-   "ds": "taifex_pcr_m",
-   "date": "2025-11",
-   "ok": true,
-   "info": "rows=20"
-  },
-  {
    "ds": "taifex_inst_fo",
    "date": "2026-11-20",
    "ok": true,
-   "info": "HTTP 200 1511B"
+   "info": "HTTP 200 3506B"
   },
   {
    "ds": "taifex_inst_fut",

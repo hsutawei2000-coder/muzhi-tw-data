@@ -1,0 +1,7 @@
+URL: https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20240101&endDate=20241231&response=json
+FORM: None
+STATUS: None
+TYPE: 
+BYTES: 44
+
+TimeoutError('The read operation timed out')
