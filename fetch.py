@@ -48,11 +48,21 @@ LATEST = {
     'taifex_inst_cp': 'https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfCallsAndPutsBytheDate',
     'taifex_pcr': 'https://openapi.taifex.com.tw/v1/PutCallRatio',
 }
-# 找網址格式用的候選
+# 找網址格式用的候選（第四欄：要存多少位元組，預設 6000）
 PROBE = [
-    ('twse_margin', DATED['twse_margin'], None),
-    ('tpex_margin', DATED['tpex_margin'], None),
-    ('taifex_txf_today', 'https://www.taifex.com.tw/cht/3/futContractsDateDown', {'queryStartDate': '{ymds_m30}', 'queryEndDate': '{today}', 'commodityId': 'TXF'}),
+    ('twse_t49u_m', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20250601&endDate=20250630&response=json', None, 20000),
+    ('twse_t49u_y2024', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20240101&endDate=20241231&response=json', None, 3000),
+    ('twse_t49u_y2012', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20120101&endDate=20121231&response=json', None, 3000),
+    ('twse_t49u_detail', 'https://www.twse.com.tw/rwd/zh/exRight/TWT49UDetail?STK_NO=2330&T1=20250612&response=json', None, 6000),
+    ('twse_t48u_range', 'https://www.twse.com.tw/rwd/zh/exRight/TWT48U?startDate=20250601&endDate=20250630&response=json', None, 12000),
+    ('twse_t48u', 'https://www.twse.com.tw/rwd/zh/exRight/TWT48U?response=json', None, 6000),
+    ('twse_t187ap45', 'https://openapi.twse.com.tw/v1/opendata/t187ap45_L', None, 6000),
+    ('twse_openapi_swagger', 'https://openapi.twse.com.tw/v1/swagger.json', None, 400000),
+    ('tpex_openapi_swagger', 'https://www.tpex.org.tw/openapi/swagger.json', None, 400000),
+    ('tpex_exd_old', 'https://www.tpex.org.tw/web/stock/exright/dailyquo/exDailyQ_result.php?l=zh-tw&d=114/06/01&ed=114/06/30', None, 12000),
+    ('tpex_exd_new', 'https://www.tpex.org.tw/www/zh-tw/exRight/dailyQuo?startDate=2025/06/01&endDate=2025/06/30&response=json', None, 12000),
+    ('tpex_exd_new2', 'https://www.tpex.org.tw/www/zh-tw/bulletin/exDailyQ?startDate=2025/06/01&endDate=2025/06/30&response=json', None, 12000),
+    ('tpex_home', 'https://www.tpex.org.tw/zh-tw/index.html', None, 400000),
 ]
 
 _last = {}
@@ -301,16 +311,18 @@ def probe():
     os.makedirs(out, exist_ok=True)
     day = weekdays_back(2)[1] if dt.datetime.now(TW).hour < 17 else weekdays_back(1)[0]
     summary = []
-    for name, tpl, form in PROBE:
+    for item in PROBE:
+        name, tpl, form = item[:3]
+        cap = item[3] if len(item) > 3 else 6000
         url = fmt(tpl, day)
         f2 = {k: fmt(v, day) for k, v in form.items()} if form else None
         t0 = time.time()
         st, body, ct = fetch(url, f2, tries=1)
-        txt = body[:6000]
+        txt = body[:cap]
         try:
             txt = txt.decode('utf-8')
         except UnicodeDecodeError:
-            txt = body[:6000].decode('big5', 'replace')
+            txt = body[:cap].decode('big5', 'replace')
         summary.append({'name': name, 'url': url, 'form': f2, 'status': st, 'type': ct, 'bytes': len(body), 'sec': round(time.time() - t0, 1)})
         with open(os.path.join(out, f'{name}.txt'), 'w', encoding='utf-8') as f:
             f.write(f'URL: {url}\nFORM: {f2}\nSTATUS: {st}\nTYPE: {ct}\nBYTES: {len(body)}\n\n{txt}')
