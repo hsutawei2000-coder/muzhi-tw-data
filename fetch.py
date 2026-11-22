@@ -58,7 +58,8 @@ EXR = {
 EXR_FROM = (2010, 1)
 # 證交所的結果表只有「權值+息值」：除權、權息要另外查明細，才分得出現金股利、無償配股與現金增資
 EXRD_URL = 'https://www.twse.com.tw/rwd/zh/exRight/TWT49UDetail?STK_NO={code}&T1={ymd}&response=json'
-EXRD_MAX = 400  # 每一輪最多補幾筆明細（回補舊資料分幾輪做）
+EXRD_MAX = 600  # 每一輪最多補幾筆明細（回補舊資料分幾輪做）
+EXRD_SEC = 35 * 60  # 每一輪補明細最多花幾秒，避免拖到其他資料存檔的時間
 # 只保留最新一份的資料（存成 raw/<資料集>/latest.json.gz，內容沒變就不重寫）
 SNAP = {
     'twse_exr_pre': 'https://www.twse.com.tw/rwd/zh/exRight/TWT48U?response=json',   # 上市除權除息預告
@@ -339,7 +340,7 @@ def exr_ok(ds, body, d0, d1):
         if st.upper() != 'OK':
             return ('沒有符合' in st), st[:40]
         want = f'{d0.year - 1911}年{d0:%m}月{d0:%d}日'
-        if not str(j.get('title', '')).startswith(want):
+        if not str(j.get('title', '')).lstrip('0').startswith(want):   # 民國 99 年以前標題是 099年
             return False, 'title ' + str(j.get('title', ''))[:30]
         return True, len(j.get('data') or [])
     if str(j.get('date', '')) != f'{d0:%Y%m%d}~{d1:%Y%m%d}':
@@ -392,8 +393,10 @@ def run_exrd(log):
             books[y] = json.loads(b) if b else {'fields': None, 'rows': {}}
         if k not in books[y]['rows']:
             todo.append(k)
-    done = 0
+    done, t0 = 0, time.time()
     for k in todo[:EXRD_MAX]:
+        if time.time() - t0 > EXRD_SEC:
+            break
         code, ymd = k.split(',')
         url = EXRD_URL.format(code=urllib.parse.quote(code), ymd=ymd)
         if blocked(url, 'twse_exrd'):
@@ -421,7 +424,7 @@ def run_exrd(log):
             log.append({'ds': 'twse_exrd', 'date': ymd, 'ok': False, 'info': f"{code} {str(j.get('stat'))[:40]}"})
     for y, bk in books.items():
         save_same('twse_exrd', y, json.dumps(bk, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode())
-    left = len(todo) - min(len(todo), EXRD_MAX)
+    left = sum(1 for k in todo if k not in books[k.split(',')[1][:4]]['rows'])
     log.append({'ds': 'twse_exrd', 'date': None, 'ok': True, 'info': f'new={done} todo={len(todo)} left={left}'})
 
 
