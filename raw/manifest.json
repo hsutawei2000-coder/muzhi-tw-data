@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22 19:02",
+ "updated": "2026-11-23 10:57",
  "datasets": {
   "taifex_inst_cp": {
    "n": 1,
@@ -159,82 +159,10 @@
    "info": "rows=2483"
   },
   {
-   "ds": "twse_exr",
-   "date": "2010-12",
-   "ok": true,
-   "info": 5
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-11",
-   "ok": true,
-   "info": 16
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-10",
-   "ok": true,
-   "info": 11
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-09",
-   "ok": true,
-   "info": 75
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-08",
-   "ok": true,
-   "info": 187
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-07",
-   "ok": true,
-   "info": 268
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-06",
-   "ok": true,
-   "info": 29
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-05",
-   "ok": true,
-   "info": 14
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-04",
-   "ok": true,
-   "info": 8
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-03",
-   "ok": true,
-   "info": 4
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-02",
-   "ok": true,
-   "info": 6
-  },
-  {
-   "ds": "twse_exr",
-   "date": "2010-01",
-   "ok": true,
-   "info": 4
-  },
-  {
    "ds": "twse_exrd",
    "date": null,
    "ok": true,
-   "info": "new=526 todo=2290 left=1764"
+   "info": "new=514 todo=1764 left=1250"
   }
  ]
 }
