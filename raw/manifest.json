@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24 10:53",
+ "updated": "2026-11-24 13:47",
  "datasets": {
   "taifex_inst_cp": {
    "n": 2,
@@ -114,7 +114,7 @@
    "ds": "taifex_inst_fo",
    "date": "2026-11-23",
    "ok": true,
-   "info": "HTTP 200 3493B"
+   "info": "HTTP 200 1498B"
   },
   {
    "ds": "taifex_inst_fut",
@@ -162,7 +162,7 @@
    "ds": "twse_exrd",
    "date": null,
    "ok": true,
-   "info": "new=222 todo=222 left=0"
+   "info": "new=0 todo=0 left=0"
   }
  ]
 }
