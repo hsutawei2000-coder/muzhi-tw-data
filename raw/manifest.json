@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24 10:19",
+ "updated": "2026-11-24 10:53",
  "datasets": {
   "taifex_inst_cp": {
    "n": 2,
@@ -162,7 +162,7 @@
    "ds": "twse_exrd",
    "date": null,
    "ok": true,
-   "info": "new=502 todo=724 left=222"
+   "info": "new=222 todo=222 left=0"
   }
  ]
 }
