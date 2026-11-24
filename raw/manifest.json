@@ -1,25 +1,25 @@
 {
- "updated": "2026-11-24 06:14",
+ "updated": "2026-11-24 10:19",
  "datasets": {
   "taifex_inst_cp": {
-   "n": 1,
+   "n": 2,
    "first": "2026-11-20",
-   "last": "2026-11-20"
+   "last": "2026-11-23"
   },
   "taifex_inst_fo": {
-   "n": 1,
+   "n": 2,
    "first": "2026-11-20",
-   "last": "2026-11-20"
+   "last": "2026-11-23"
   },
   "taifex_inst_fut": {
-   "n": 1,
+   "n": 2,
    "first": "2026-11-20",
-   "last": "2026-11-20"
+   "last": "2026-11-23"
   },
   "taifex_pcr": {
-   "n": 1,
+   "n": 2,
    "first": "2026-11-20",
-   "last": "2026-11-20"
+   "last": "2026-11-23"
   },
   "taifex_pcr_m": {
    "n": 13,
@@ -99,42 +99,6 @@
  },
  "lastRun": [
   {
-   "ds": "twse_margin",
-   "date": "2026-11-23",
-   "ok": true,
-   "info": "rows=1314"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-11-23",
-   "ok": true,
-   "info": "rows=1315"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-11-23",
-   "ok": true,
-   "info": "rows=1374"
-  },
-  {
-   "ds": "tpex_margin",
-   "date": "2026-11-23",
-   "ok": true,
-   "info": "rows=923"
-  },
-  {
-   "ds": "tpex_sbl",
-   "date": "2026-11-23",
-   "ok": true,
-   "info": "rows=935"
-  },
-  {
-   "ds": "tpex_qfii",
-   "date": "2026-11-23",
-   "ok": true,
-   "info": "rows=899"
-  },
-  {
    "ds": "taifex_txf",
    "date": "2026-11",
    "ok": true,
@@ -148,27 +112,27 @@
   },
   {
    "ds": "taifex_inst_fo",
-   "date": "2026-11-20",
+   "date": "2026-11-23",
    "ok": true,
-   "info": "HTTP 200 3506B"
+   "info": "HTTP 200 3493B"
   },
   {
    "ds": "taifex_inst_fut",
-   "date": "2026-11-20",
+   "date": "2026-11-23",
    "ok": true,
-   "info": "HTTP 200 33963B"
+   "info": "HTTP 200 34025B"
   },
   {
    "ds": "taifex_inst_cp",
-   "date": "2026-11-20",
+   "date": "2026-11-23",
    "ok": true,
-   "info": "HTTP 200 15613B"
+   "info": "HTTP 200 2804B"
   },
   {
    "ds": "taifex_pcr",
-   "date": "2026-11-20",
+   "date": "2026-11-23",
    "ok": true,
-   "info": "HTTP 200 3231B"
+   "info": "HTTP 200 1113B"
   },
   {
    "ds": "twse_exr_pre",
@@ -198,7 +162,7 @@
    "ds": "twse_exrd",
    "date": null,
    "ok": true,
-   "info": "new=526 todo=1250 left=724"
+   "info": "new=502 todo=724 left=222"
   }
  ]
 }
