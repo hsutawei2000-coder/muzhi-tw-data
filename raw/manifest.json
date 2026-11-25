@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26 03:35",
+ "updated": "2026-11-26 07:10",
  "datasets": {
   "taifex_inst_cp": {
    "n": 3,
@@ -98,42 +98,6 @@
   }
  },
  "lastRun": [
-  {
-   "ds": "twse_margin",
-   "date": "2026-11-25",
-   "ok": true,
-   "info": "rows=1315"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-11-25",
-   "ok": true,
-   "info": "rows=1316"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-11-25",
-   "ok": true,
-   "info": "rows=1375"
-  },
-  {
-   "ds": "tpex_margin",
-   "date": "2026-11-25",
-   "ok": true,
-   "info": "rows=923"
-  },
-  {
-   "ds": "tpex_sbl",
-   "date": "2026-11-25",
-   "ok": true,
-   "info": "rows=935"
-  },
-  {
-   "ds": "tpex_qfii",
-   "date": "2026-11-25",
-   "ok": true,
-   "info": "rows=899"
-  },
   {
    "ds": "taifex_txf",
    "date": "2026-11",
