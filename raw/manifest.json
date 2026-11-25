@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25 12:48",
+ "updated": "2026-11-26 03:35",
  "datasets": {
   "taifex_inst_cp": {
    "n": 3,
@@ -47,19 +47,19 @@
    "last": "latest"
   },
   "tpex_margin": {
-   "n": 232,
+   "n": 233,
    "first": "2025-12-08",
-   "last": "2026-11-24"
+   "last": "2026-11-25"
   },
   "tpex_qfii": {
-   "n": 232,
+   "n": 233,
    "first": "2025-12-08",
-   "last": "2026-11-24"
+   "last": "2026-11-25"
   },
   "tpex_sbl": {
-   "n": 232,
+   "n": 233,
    "first": "2025-12-08",
-   "last": "2026-11-24"
+   "last": "2026-11-25"
   },
   "twse_divpol": {
    "n": 1,
@@ -82,33 +82,69 @@
    "last": "2026"
   },
   "twse_margin": {
-   "n": 232,
+   "n": 233,
    "first": "2025-12-08",
-   "last": "2026-11-24"
+   "last": "2026-11-25"
   },
   "twse_qfii": {
-   "n": 234,
+   "n": 235,
    "first": "2025-12-08",
-   "last": "2026-11-24"
+   "last": "2026-11-25"
   },
   "twse_sbl": {
-   "n": 232,
+   "n": 233,
    "first": "2025-12-08",
-   "last": "2026-11-24"
+   "last": "2026-11-25"
   }
  },
  "lastRun": [
   {
+   "ds": "twse_margin",
+   "date": "2026-11-25",
+   "ok": true,
+   "info": "rows=1315"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-11-25",
+   "ok": true,
+   "info": "rows=1316"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-11-25",
+   "ok": true,
+   "info": "rows=1375"
+  },
+  {
+   "ds": "tpex_margin",
+   "date": "2026-11-25",
+   "ok": true,
+   "info": "rows=923"
+  },
+  {
+   "ds": "tpex_sbl",
+   "date": "2026-11-25",
+   "ok": true,
+   "info": "rows=935"
+  },
+  {
+   "ds": "tpex_qfii",
+   "date": "2026-11-25",
+   "ok": true,
+   "info": "rows=899"
+  },
+  {
    "ds": "taifex_txf",
    "date": "2026-11",
    "ok": true,
-   "info": "rows=51"
+   "info": "rows=54"
   },
   {
    "ds": "taifex_pcr_m",
    "date": "2026-11",
    "ok": true,
-   "info": "rows=17"
+   "info": "rows=18"
   },
   {
    "ds": "taifex_inst_fo",
@@ -120,7 +156,7 @@
    "ds": "taifex_inst_fut",
    "date": "2026-11-24",
    "ok": true,
-   "info": "HTTP 200 6121B"
+   "info": "HTTP 200 33915B"
   },
   {
    "ds": "taifex_inst_cp",
@@ -138,7 +174,7 @@
    "ds": "twse_exr_pre",
    "date": null,
    "ok": true,
-   "info": "rows=23"
+   "info": "rows=26"
   },
   {
    "ds": "tpex_exr_pre",
