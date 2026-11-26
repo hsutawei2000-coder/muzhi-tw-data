@@ -1,10 +1,10 @@
 {
- "updated": "2026-11-27 03:16",
+ "updated": "2026-11-27 07:05",
  "datasets": {
   "taifex_inst_cp": {
-   "n": 4,
+   "n": 5,
    "first": "2026-11-20",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   },
   "taifex_inst_fo": {
    "n": 4,
@@ -12,14 +12,14 @@
    "last": "2026-11-25"
   },
   "taifex_inst_fut": {
-   "n": 4,
+   "n": 5,
    "first": "2026-11-20",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   },
   "taifex_pcr": {
-   "n": 4,
+   "n": 5,
    "first": "2026-11-20",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   },
   "taifex_pcr_m": {
    "n": 13,
@@ -99,42 +99,6 @@
  },
  "lastRun": [
   {
-   "ds": "twse_margin",
-   "date": "2026-11-26",
-   "ok": true,
-   "info": "rows=1315"
-  },
-  {
-   "ds": "twse_sbl",
-   "date": "2026-11-26",
-   "ok": true,
-   "info": "rows=1316"
-  },
-  {
-   "ds": "twse_qfii",
-   "date": "2026-11-26",
-   "ok": true,
-   "info": "rows=1375"
-  },
-  {
-   "ds": "tpex_margin",
-   "date": "2026-11-26",
-   "ok": true,
-   "info": "rows=923"
-  },
-  {
-   "ds": "tpex_sbl",
-   "date": "2026-11-26",
-   "ok": true,
-   "info": "rows=935"
-  },
-  {
-   "ds": "tpex_qfii",
-   "date": "2026-11-26",
-   "ok": true,
-   "info": "rows=900"
-  },
-  {
    "ds": "taifex_txf",
    "date": "2026-11",
    "ok": true,
@@ -150,25 +114,25 @@
    "ds": "taifex_inst_fo",
    "date": "2026-11-25",
    "ok": true,
-   "info": "HTTP 200 3504B"
+   "info": "HTTP 200 1509B"
   },
   {
    "ds": "taifex_inst_fut",
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "ok": true,
-   "info": "HTTP 200 34049B"
+   "info": "HTTP 200 34029B"
   },
   {
    "ds": "taifex_inst_cp",
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "ok": true,
-   "info": "HTTP 200 15616B"
+   "info": "HTTP 200 2807B"
   },
   {
    "ds": "taifex_pcr",
-   "date": "2026-11-25",
+   "date": "2026-11-26",
    "ok": true,
-   "info": "HTTP 200 3384B"
+   "info": "HTTP 200 3538B"
   },
   {
    "ds": "twse_exr_pre",
@@ -198,7 +162,7 @@
    "ds": "twse_exrd",
    "date": null,
    "ok": true,
-   "info": "new=1 todo=1 left=0"
+   "info": "new=0 todo=0 left=0"
   }
  ]
 }
