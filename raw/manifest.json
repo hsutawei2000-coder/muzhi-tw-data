@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26 11:59",
+ "updated": "2026-11-27 03:16",
  "datasets": {
   "taifex_inst_cp": {
    "n": 4,
@@ -47,19 +47,19 @@
    "last": "latest"
   },
   "tpex_margin": {
-   "n": 233,
+   "n": 234,
    "first": "2025-12-08",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   },
   "tpex_qfii": {
-   "n": 233,
+   "n": 234,
    "first": "2025-12-08",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   },
   "tpex_sbl": {
-   "n": 233,
+   "n": 234,
    "first": "2025-12-08",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   },
   "twse_divpol": {
    "n": 1,
@@ -82,33 +82,69 @@
    "last": "2026"
   },
   "twse_margin": {
-   "n": 233,
+   "n": 234,
    "first": "2025-12-08",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   },
   "twse_qfii": {
-   "n": 235,
+   "n": 236,
    "first": "2025-12-08",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   },
   "twse_sbl": {
-   "n": 233,
+   "n": 234,
    "first": "2025-12-08",
-   "last": "2026-11-25"
+   "last": "2026-11-26"
   }
  },
  "lastRun": [
   {
+   "ds": "twse_margin",
+   "date": "2026-11-26",
+   "ok": true,
+   "info": "rows=1315"
+  },
+  {
+   "ds": "twse_sbl",
+   "date": "2026-11-26",
+   "ok": true,
+   "info": "rows=1316"
+  },
+  {
+   "ds": "twse_qfii",
+   "date": "2026-11-26",
+   "ok": true,
+   "info": "rows=1375"
+  },
+  {
+   "ds": "tpex_margin",
+   "date": "2026-11-26",
+   "ok": true,
+   "info": "rows=923"
+  },
+  {
+   "ds": "tpex_sbl",
+   "date": "2026-11-26",
+   "ok": true,
+   "info": "rows=935"
+  },
+  {
+   "ds": "tpex_qfii",
+   "date": "2026-11-26",
+   "ok": true,
+   "info": "rows=900"
+  },
+  {
    "ds": "taifex_txf",
    "date": "2026-11",
    "ok": true,
-   "info": "rows=54"
+   "info": "rows=57"
   },
   {
    "ds": "taifex_pcr_m",
    "date": "2026-11",
    "ok": true,
-   "info": "rows=18"
+   "info": "rows=19"
   },
   {
    "ds": "taifex_inst_fo",
@@ -138,13 +174,13 @@
    "ds": "twse_exr_pre",
    "date": null,
    "ok": true,
-   "info": "rows=24"
+   "info": "rows=25"
   },
   {
    "ds": "tpex_exr_pre",
    "date": null,
    "ok": true,
-   "info": "rows=66"
+   "info": "rows=57"
   },
   {
    "ds": "twse_divpol",
@@ -162,7 +198,7 @@
    "ds": "twse_exrd",
    "date": null,
    "ok": true,
-   "info": "new=0 todo=0 left=0"
+   "info": "new=1 todo=1 left=0"
   }
  ]
 }
