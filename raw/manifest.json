@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28 06:47",
+ "updated": "2026-11-28 07:45",
  "datasets": {
   "taifex_inst_cp": {
    "n": 5,
@@ -7,19 +7,19 @@
    "last": "2026-11-26"
   },
   "taifex_inst_fo": {
-   "n": 5,
+   "n": 6,
    "first": "2026-11-20",
-   "last": "2026-11-26"
+   "last": "2026-11-27"
   },
   "taifex_inst_fut": {
-   "n": 5,
+   "n": 6,
    "first": "2026-11-20",
-   "last": "2026-11-26"
+   "last": "2026-11-27"
   },
   "taifex_pcr": {
-   "n": 5,
+   "n": 6,
    "first": "2026-11-20",
-   "last": "2026-11-26"
+   "last": "2026-11-27"
   },
   "taifex_pcr_m": {
    "n": 13,
@@ -112,15 +112,15 @@
   },
   {
    "ds": "taifex_inst_fo",
-   "date": "2026-11-26",
+   "date": "2026-11-27",
    "ok": true,
-   "info": "HTTP 200 3485B"
+   "info": "HTTP 200 1493B"
   },
   {
    "ds": "taifex_inst_fut",
-   "date": "2026-11-26",
+   "date": "2026-11-27",
    "ok": true,
-   "info": "HTTP 200 34029B"
+   "info": "HTTP 200 33958B"
   },
   {
    "ds": "taifex_inst_cp",
@@ -130,7 +130,7 @@
   },
   {
    "ds": "taifex_pcr",
-   "date": "2026-11-26",
+   "date": "2026-11-27",
    "ok": true,
    "info": "HTTP 200 3538B"
   },
